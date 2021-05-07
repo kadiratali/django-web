@@ -1,0 +1,15 @@
+{% macro render_card(src,text,path) %}
+<li style="display: inline-block;">
+    <a href={{path}}>
+        <figure class="ripple">
+            <img style="max-height: 300px; max-width:450px; -webkit-box-shadow: 5px 9px 20px -3px rgba(0,0,0,0.71); 
+            box-shadow: 5px 9px 20px -3px rgba(0,0,0,0.71); -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;" alt='Travel' src={{src}} >
+        </figure>
+    </a>
+    <div style="margin-top: 5px; text-align:center">
+        <h5>{{text}}</h5>
+    </div>
+</li>
+{% endmacro %}

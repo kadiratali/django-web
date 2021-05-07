@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+
+{% if article %}
+
+<h4>{{article.title}}</h4>
+<hr>
+Yazar : {{article.author}}
+<hr>
+Tarih : {{article.created_date}}
+<hr>
+{{article.content | safe}}
+<hr>
+{% if artic %}
+<h4>Sorular / Yorumlar:</h4>
+{% for art in artic  %}
+<div class="forumText forumMax">
+    <p>{{art.message}}</p>
+    <p class="forumTagline">
+        <span class="forumName"><h6>{{art.author}}</h6></span>
+        <span class="text-muted">{{art.time}}</span>
+    </p>
+</div>
+<br>
+{% endfor %}
+  
+{% else %}
+  
+{% endif %}
+
+<form action="/article/{{article.id}}" method="post">
+    <textarea name= "comment" rows="6" cols="50"></textarea>
+    <br>
+    {% if session["logged_in"] %}
+    <button type="submit" class="btn btn-default">Gönder</button>
+    {% else %}
+    <a href="/login" class="aler alert-success">Soru sormak veya yorum yapmak için giriş yapınız.</a>
+    {% endif %}
+</form>
+
+{% include "includes/googlemap.html" %}
+{% else %}
+<div class="alert alert-warning">
+    Böyle bir makale bulunmuyor...
+</div>
+{% endif %}
+</div>
+{% endblock body %}
